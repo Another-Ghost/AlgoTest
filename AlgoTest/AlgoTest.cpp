@@ -1,9 +1,10 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include "Math.h"
+
 
 using namespace std;
-
-
 
 
 //Quick Sort
@@ -61,6 +62,13 @@ void QuickSortTest()
 
 int main()
 {
+	vector<int> times{ 0, 1, 4, 2, 1, 3, 6 };
+	sort(times.begin(), times.end());
+
+	for (auto t : times)
+	{
+		cout << t << endl;
+	}
 
 	return 0;
 }
