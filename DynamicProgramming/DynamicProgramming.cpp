@@ -1,3 +1,4 @@
+#include "DynamicProgramming.h"
 #include <iostream>
 #include <vector>
 
@@ -18,7 +19,7 @@ using namespace std;
 void NumberOfPaths()
 {
 	int M, N; //数组大小
-	cin >> M; 
+	cin >> M;
 	cin >> N;
 	int S; //障碍数
 	cin >> S;
@@ -32,7 +33,7 @@ void NumberOfPaths()
 		int x, y; //每一个障碍的坐标
 		cin >> x;
 		cin >> y;
-		arr_map[x-1][y-1] = -1;
+		arr_map[x - 1][y - 1] = -1;
 	}
 
 
@@ -64,10 +65,59 @@ void NumberOfPaths()
 	//Notice: 需考虑起点和终点为障碍物的情况
 }
 
-
-int main()
+//3/28 ByteDance 4
+//题目描述
+//有家自助寿司店, 把每道寿司放在传送带上送给客人选择, 但是有一个规矩,
+//就是不外允许拿相邻的寿司。假如为了吃得更值, 就要拿总价最高的寿司。
+//比如价格为[9, 1, 2, 4]的寿司, 拿第1道和笔4道总价最高。求出能拿到的寿司总值的最大值
+//输入描述
+//[1, 2, 3, 1]
+//数据量范围在1~200之间
+//输出描述
+//求出能拿到的寿司总价值的最大值
+//4
+void MaxSushiTotalPrice()
 {
-	NumberOfPaths();
+	vector<int> prices;
+	int input;
+	while (cin >> input)
+	{
+		prices.push_back(input);
+	}
+
+	int len = prices.size();
+	int ans = 0;
+
+	if (len <= 3)
+	{
+		if (len == 0)
+		{
+			ans = 0;
+		}
+		else if (len == 1)
+		{
+			ans = prices[0];
+		}
+		else if (len == 2)
+		{
+			ans = (prices[0] > prices[1]) ? prices[0] : prices[1];
+		}
+		else if (len == 3)
+		{
+			ans = (prices[0] + prices[2] > prices[1]) ? prices[0] + prices[2] : prices[1];
+		}
+
+	}
+	else {
+		prices[2] += prices[0];
+		for (int i = 3; i < prices.size(); ++i)
+		{
+			prices[i] += prices[i - 2] > prices[i - 3] ? prices[i - 2] : prices[i - 3];
+		}
+
+		ans = prices[len - 1] > prices[len - 2] ? prices[len - 1] : prices[len - 2];
+	}
+
+	cout << ans;
+	return;
 }
-
-
