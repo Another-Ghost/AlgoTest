@@ -95,6 +95,7 @@ void EliminateForHappy_List()
 				++itor;
 			}
 		}
+
 	}
 
 	//list<int>::iterator itor;
