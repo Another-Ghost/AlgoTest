@@ -65,7 +65,7 @@ void NumberOfPaths()
 	//Notice: 需考虑起点和终点为障碍物的情况
 }
 
-//3/28 ByteDance 4
+//ByteDance 3/28 2
 //题目描述
 //有家自助寿司店, 把每道寿司放在传送带上送给客人选择, 但是有一个规矩,
 //就是不外允许拿相邻的寿司。假如为了吃得更值, 就要拿总价最高的寿司。
@@ -121,3 +121,81 @@ void MaxSushiTotalPrice()
 	cout << ans;
 	return;
 }
+
+//Tencent 4/5 5
+
+/*input 
+1
+5 6
+1 2 3 4 12
+*/
+void Weights()
+{
+	int T;
+	cin >> T;
+	while (T--)
+	{
+		int n, m;
+		cin >> n;
+		cin >> m;
+		vector<int> weights;
+		int sum = 0;
+		for (int i = 0; i < n; ++i)
+		{
+			int temp;
+			cin >> temp;
+			weights.push_back(temp);
+			sum += temp;
+		}
+
+
+		vector<int> f(sum + 1, INT_MAX);
+		f[0] = 0;
+		for (int i = n - 1; i >= 0; --i)
+		{
+			//for (int j = sum; j >= weights[i]; --j)
+			for (int j = weights[i]; j < sum; ++j)
+			{
+				if (f[j - weights[i]] != INT_MAX)
+					f[j] = min(f[j - weights[i]] + 1, f[j]);
+			}
+		}
+
+		int res = INT_MAX;
+		for (int i = m; i <= sum; i = i + m)
+		{
+			res = min(res, f[i]);
+		}
+
+		cout << (res == INT_MAX ? -1 : res);
+	}
+}
+
+
+//Netease 4/4
+void ChangeMoneyWays()
+{
+	int n;
+	cin >> n;
+	int money;
+	cin >> money;
+	vector<int> arr;
+	for(int i=0; i<n; ++i)
+	{
+		int temp;
+		cin>>temp;
+		arr.push_back(temp);
+	}
+
+	vector<int> f(money + 1);
+	f[0] = 1;
+	for (int i = 0; i < n; ++i)
+	{
+		for (int j = arr[i]; j <= money; ++j)
+		{
+			f[j] = (f[j] + f[j - arr[i]])% 1000000007;
+		}
+	}
+	cout << f[money] << endl;
+}
+
