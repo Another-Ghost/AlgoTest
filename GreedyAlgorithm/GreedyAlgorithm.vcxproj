@@ -140,7 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Greedy.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="GreedyMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Greedy.h" />

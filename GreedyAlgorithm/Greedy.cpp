@@ -86,6 +86,46 @@ bool IsNotIsoscelesTriangle(int a, int b, int c)
 	return false;
 }
 
+void WireRope()
+{
+	int T;
+	cin >> T;
+	while (T-- > 0)
+	{
+		int n;
+		cin >> n;
+		vector<int> trainees;
+		for (int i = 0; i < n; ++i)
+		{
+			int temp;
+			cin >> temp;
+			trainees.push_back(temp);
+		}
+
+		sort(trainees.begin(), trainees.end());
+		int sum = 0;
+		int n_left = trainees.size();
+		while (n_left > 3)
+		{
+			int time_min = trainees[0] + 2 * trainees[1] + trainees[n_left - 1];
+			time_min = min(time_min, 2 * trainees[0] + trainees[n_left - 2] + trainees[n_left - 1]);
+			sum += time_min;
+			n_left -= 2;
+		}
+		if (n_left == 3)
+			sum += trainees[0] + trainees[1] + trainees[2];
+		else if (n_left == 2)
+			sum += trainees[1];
+		else if(n_left==1)
+			sum += trainees[0];
+
+		cout << sum << endl;
+	}
+
+
+
+}
+
 
 
 
