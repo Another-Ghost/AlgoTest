@@ -9,7 +9,7 @@ using namespace std;
 //¾ùºâµÄÊı
 //cout << BalenceNumbers(11, 121) << endl;
 
-int BalenceNumbers(int L, int R)
+int BalanceNumbers(int L, int R)
 {
 	int count = 0;
 	for (int i = L; i <= R; ++i)

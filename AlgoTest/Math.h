@@ -1,4 +1,4 @@
 #pragma once
 
 
-int BalenceNumbers(int L, int R);
+int BalanceNumbers(int L, int R);

@@ -4,7 +4,7 @@
 
 int main()
 {
-	WireRope();
+	SharedCharge();
 }
 
 

@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tree", "Tree\Tree.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stack", "Stack\Stack.vcxproj", "{21BC99AB-60B4-4564-8FC3-DBC305B0557B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hash", "Hash\Hash.vcxproj", "{B885DA16-1818-48A4-9422-DAC73124CAB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -81,6 +83,14 @@ Global
 		{21BC99AB-60B4-4564-8FC3-DBC305B0557B}.Release|x64.Build.0 = Release|x64
 		{21BC99AB-60B4-4564-8FC3-DBC305B0557B}.Release|x86.ActiveCfg = Release|Win32
 		{21BC99AB-60B4-4564-8FC3-DBC305B0557B}.Release|x86.Build.0 = Release|Win32
+		{B885DA16-1818-48A4-9422-DAC73124CAB8}.Debug|x64.ActiveCfg = Debug|x64
+		{B885DA16-1818-48A4-9422-DAC73124CAB8}.Debug|x64.Build.0 = Debug|x64
+		{B885DA16-1818-48A4-9422-DAC73124CAB8}.Debug|x86.ActiveCfg = Debug|Win32
+		{B885DA16-1818-48A4-9422-DAC73124CAB8}.Debug|x86.Build.0 = Debug|Win32
+		{B885DA16-1818-48A4-9422-DAC73124CAB8}.Release|x64.ActiveCfg = Release|x64
+		{B885DA16-1818-48A4-9422-DAC73124CAB8}.Release|x64.Build.0 = Release|x64
+		{B885DA16-1818-48A4-9422-DAC73124CAB8}.Release|x86.ActiveCfg = Release|Win32
+		{B885DA16-1818-48A4-9422-DAC73124CAB8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

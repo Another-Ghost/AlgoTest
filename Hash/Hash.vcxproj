@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{8dcd451b-8eec-4eb7-ab89-688b2d86855c}</ProjectGuid>
-    <RootNamespace>String</RootNamespace>
+    <ProjectGuid>{b885da16-1818-48a4-9422-dac73124cab8}</ProjectGuid>
+    <RootNamespace>Hash</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,11 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="String.cpp" />
-    <ClCompile Include="StringMain.cpp" />
+    <ClCompile Include="Hash.cpp" />
+    <ClCompile Include="HashMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="String.h" />
+    <ClInclude Include="Hash.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

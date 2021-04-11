@@ -7,3 +7,5 @@ bool IsNotIsoscelesTriangle(int a, int b, int c);
 
 
 void WireRope();
+
+void SharedCharge();

@@ -86,6 +86,7 @@ bool IsNotIsoscelesTriangle(int a, int b, int c)
 	return false;
 }
 
+//Tencent 4/4 3/5
 void WireRope()
 {
 	int T;
@@ -124,6 +125,78 @@ void WireRope()
 
 
 
+}
+
+//Tencent 4/4 4/5
+//Unfinished
+struct Phone
+{
+	int a;
+	int b;
+	float left_time;
+	Phone(int a_, int b_):a(a_), b(b_)
+	{
+		left_time = a/(b*1.0f);
+	}
+
+	bool operator < (const Phone& other) const
+	{
+		if (left_time < other.left_time)
+			return true;
+		
+		return false;
+	}
+};
+
+
+void SharedCharge()
+{
+	int T;
+	cin >> T;
+	while (T--)
+	{
+		int n, w;
+		cin >> n >> w;
+		vector<Phone> phones;
+		for (int i = 0; i < n; ++i)
+		{
+			int a, b;
+			cin >> a >> b;
+			phones.push_back(Phone(a, b));
+		}
+
+		int sum_b = 0;
+		for (int i = 0; i < phones.size(); ++i)
+		{
+			sum_b += phones[i].b;
+		}
+		if (w > sum_b)
+		{
+			cout << '-1' << endl;
+			continue;
+		}
+
+		sort(phones.begin(), phones.end());
+		int time_maintain = 0;
+		float sum_b_cur = 0.0f;
+		for (int i = 0; i < phones.size(); ++i)
+		{
+			sum_b_cur += phones[i].b;
+			time_maintain += phones[i].left_time;
+			phones[i].left_time = 0.0f;
+			if (sum_b_cur < w)
+			{
+				for (int j = i + 1; j < phones.size(); ++j)
+				{
+					phones[j].left_time -= phones[i].left_time;
+				}
+			}
+			else
+			{
+
+			}
+		}
+	}
 }
 
 
