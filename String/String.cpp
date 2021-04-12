@@ -71,3 +71,74 @@ void ToLowerAndToUpper()
 	///transform(wstr.begin(), wstr.end(), wstr.begin(), towupper);
 	cout << "转化为大写后为：" << s;
 }
+
+
+string addStrings(string num1, string num2) {
+	if (num1.size() < num2.size())
+		return addStrings(num2, num1);
+
+	vector<int> arr1;
+	vector<int> arr2;
+	for (int i = arr1.size() - 1; i >= 0; --i)
+		arr1.push_back(num1[i] - '0');
+	for (int i = arr2.size() - 1; i >= 0; --i)
+		arr2.push_back(num2[i] - '0');
+
+	vector<int> arr3;
+	int n = 0;
+	for (int i = 0; i < arr1.size(); ++i)
+	{
+		n += arr1[i];
+		if (i < arr2.size())
+			n += arr2[i];
+		arr3.push_back(n % 10);
+		n /= 10;
+	}
+
+	if (n)
+		arr3.push_back(n);
+
+	string res;
+	for (int i = arr3.size() - 1; i >= 0; --i)
+		res += to_string(arr3[i]);
+
+	return res;
+}
+
+string multiply(string num1, string num2) {
+	//vector<int> arr1;
+	//vector<int> arr2;
+	//for(int i = arr1.size() - 1; i >= 0; --i)
+	//    arr1.push_back(num1[i] - '0');
+	//for(int i = arr2.size() - 1; i >= 0; --i)
+	//   arr2.push_back(num2[i] - '0');
+	if (num1 == "0" || num2 == "0")
+		return "0";
+	int m = num1.size();
+	int n = num2.size();
+	vector<int> arr(m + n);
+	for (int i = m - 1; i >= 0; --i)
+		for (int j = n - 1; j >= 0; --j)
+		{
+			int bias = 0;
+			int bit = m + n - i - j - 2;
+			arr[bit] += (num1[i] -'0') * (num2[j] - '0');
+			while (arr[bit + bias] >= 10) //如需进位则继续循环
+			{
+				arr[bit + 1 + bias] += arr[bit + bias] / 10;
+				arr[bit + bias] %= 10;
+				++bias;
+			}
+		}
+	int i;
+	for (i = n + m - 1; i >= 0; --i)
+		if (arr[i] != 0)
+			break;
+
+	string ans;
+	for (int j = i; j >= 0; --j)
+		ans.push_back(arr[j] + '0');
+
+	return ans;
+
+}

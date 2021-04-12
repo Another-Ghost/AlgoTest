@@ -3,6 +3,8 @@
 #include <vector>
 #include <algorithm>
 #include <sstream>
+#include <unordered_map>
+#include <unordered_set>
 
 using namespace std;
 //ByteDance 3/27 3
@@ -197,6 +199,82 @@ void SharedCharge()
 			}
 		}
 	}
+}
+
+//miHoYo / 2/5
+struct Game
+{
+	int t;
+	int w;
+
+	bool operator < (const Game& other)
+	{
+		if (w < other.w)
+			return true;
+		
+		return false;
+	}
+};
+
+void GloryCLub()
+{
+
+	int n;
+	cin >> n;
+
+	//unordered_map<int, int> games;
+	//vector<int> times(n);
+	//vector<int> points(n);
+	//for (int i = 0; i <= n; ++i)
+	//{
+	//	int temp;
+	//	cin >> temp;
+	//	times.push_back(temp);
+	//}
+	//for (int i = 0; i <= n; ++i)
+	//{
+	//	int temp;
+	//	cin >> temp;
+	//	points.push_back(temp);
+	//}
+
+	//for (int i = 0; i <= n; ++i)
+	//{
+	//	games.emplace(times[i], points[i]);
+	//}
+
+	vector<Game> games(n);
+	for (int i = 0; i < n; ++i)
+	{
+		cin >> games[i].t;
+	}
+	for (int i = 0; i < n; ++i)
+	{
+		cin >> games[i].w;
+	}
+
+	sort(games.begin(), games.end());
+
+	unordered_set<int> times;
+
+	int sum = 0;
+	for (int i = n-1; i >= 0; --i)
+	{
+		if (times.count(games[i].t))
+			sum -= games[i].w;
+		else
+		{
+			times.insert(games[i].t);
+			sum += games[i].w;
+		}
+	}
+
+	cout << sum << endl;
+}
+
+void GloryCLub_MultiMap()
+{
+
 }
 
 
