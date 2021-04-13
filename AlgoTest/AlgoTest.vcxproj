@@ -141,9 +141,11 @@
   <ItemGroup>
     <ClCompile Include="AlgoTest.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Sort.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math.h" />
+    <ClInclude Include="Sort.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

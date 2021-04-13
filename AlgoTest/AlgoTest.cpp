@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include "Math.h"
-
+#include "Sort.h"
 
 using namespace std;
 
@@ -35,13 +35,13 @@ int partition(vector<int>& arr, int left, int right)
 	//}
 }
 
-void QuickSort(vector<int>& arr, int left, int right)
+void QuickSort1(vector<int>& arr, int left, int right)
 {
 	if (left < right)
 	{
 		int partitionIndex = partition(arr, left, right);
-		QuickSort(arr, left, partitionIndex - 1);
-		QuickSort(arr, partitionIndex + 1, right);
+		QuickSort1(arr, left, partitionIndex - 1);
+		QuickSort1(arr, partitionIndex + 1, right);
 	}
 }
 
@@ -49,7 +49,7 @@ void QuickSortTest()
 {
 	vector<int> arr{ 3,1,4,3,5 };
 
-	QuickSort(arr, 0, arr.size() - 1);
+	QuickSort1(arr, 0, arr.size() - 1);
 
 	for (auto i : arr)
 	{
@@ -63,7 +63,9 @@ void QuickSortTest()
 int main()
 {
 	vector<int> times{ 0, 1, 4, 2, 1, 3, 6 };
-	sort(times.begin(), times.end());
+	//sort(times.begin(), times.end());
+
+	QuickSort(times, 0, times.size() - 1);
 
 	for (auto t : times)
 	{
