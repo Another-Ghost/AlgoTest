@@ -62,16 +62,26 @@ void QuickSortTest()
 
 int main()
 {
-	vector<int> times{ 0, 1, 4, 2, 1, 3, 6 };
-	//sort(times.begin(), times.end());
+	//vector<int> times{ 0, 1, 4, 2, 1, 3, 6 };
+	////sort(times.begin(), times.end());
 
-	QuickSort(times, 0, times.size() - 1);
+	//QuickSort(times, 0, times.size() - 1);
 
-	for (auto t : times)
+	//for (auto t : times)
+	//{
+	//	cout << t << endl;
+	//}
+	int m, n;
+	cin >> m >> n;
+	vector<vector<char>> grid(m, vector<char>(n));
+	for (int i = 0; i < m; ++i)
 	{
-		cout << t << endl;
+		for (int j = 0; j < n; ++j)
+			cin >> grid[i][j];
 	}
 
+	int ans = numIslands(grid);
+	cout << ans;
 	return 0;
 }
 
