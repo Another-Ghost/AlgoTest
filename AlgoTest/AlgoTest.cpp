@@ -58,6 +58,46 @@ void QuickSortTest()
 	cout << endl;
 }
 
+double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+	int total = nums1.size() + nums2.size();
+	int a = 0, b = 0;
+	int mid = 0;
+	for (int i = 0; i < total; ++i)
+	{
+		int n1 = a < nums1.size() ? nums1[a] : INT_MAX;
+		int n2 = b < nums2.size() ? nums2[b] : INT_MAX;
+		int n3;
+		if (n1 <= n2)
+		{
+			n3 = n1;
+			++a;
+		}
+		else
+		{
+			n3 = n2;
+			++b;
+		}
+		if (total % 2 == 1) {
+			if (i == total / 2)
+			{
+				return n3;
+			}
+		}
+		else if (total % 2 == 0)
+		{
+			if (i == total / 2 - 1)
+			{
+				mid += n3;
+			}
+			else if (i == total / 2)
+			{
+				return (mid + n3) * 1.0 / 2;
+			}
+		}
+
+	}
+	return 0.0;
+}
 
 
 int main()
@@ -66,22 +106,12 @@ int main()
 	////sort(times.begin(), times.end());
 
 	//QuickSort(times, 0, times.size() - 1);
+	vector<int> nums1 = { 1, 2 };
+	vector<int> nums2 = { 3, 4 };
+	cout << findMedianSortedArrays(nums1, nums2);
 
-	//for (auto t : times)
-	//{
-	//	cout << t << endl;
-	//}
-	int m, n;
-	cin >> m >> n;
-	vector<vector<char>> grid(m, vector<char>(n));
-	for (int i = 0; i < m; ++i)
-	{
-		for (int j = 0; j < n; ++j)
-			cin >> grid[i][j];
-	}
-
-	int ans = numIslands(grid);
-	cout << ans;
+	//int ans = numIlands(grid);
+	//cout << ans;
 	return 0;
 }
 

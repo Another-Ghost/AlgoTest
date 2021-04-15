@@ -101,7 +101,22 @@ namespace union_find
 }
 
 
+//leetcode 203 并查集求连通域数
 /*
+//for (auto t : times)
+//{
+//	cout << t << endl;
+//}
+//int m, n;
+//cin >> m >> n;
+//vector<vector<char>> grid(m, vector<char>(n));
+//for (int i = 0; i < m; ++i)
+//{
+//	for (int j = 0; j < n; ++j)
+//		cin >> grid[i][j];
+//}
+
+
 4 5
 1 1 0 0 0
 1 1 0 0 0
@@ -131,6 +146,7 @@ void Merge(vector<int>& p, int x, int y)
 {
 	p[find(p, x)] = find(p, y);
 }
+
 
 
 int numIslands(vector<vector<char>>& grid) {
