@@ -272,6 +272,54 @@ void GloryCLub()
 	cout << sum << endl;
 }
 
+
+//Tencent 4/18 2/5
+void GameClub()
+{
+	int T;
+	cin >> T;
+
+	while (T--)
+	{
+		int n;
+		cin >> n;
+		vector<Game> games(n);
+		for (int i = 0; i < n; ++i)
+		{
+			int tmp;
+			cin >> tmp;
+			games[i].t = tmp;
+		}
+
+		for (int i = 0; i < n; ++i)
+		{
+			int tmp;
+			cin >> tmp;
+			games[i].w = tmp;
+		}
+
+		sort(games.begin(), games.end());
+
+		unordered_set<int> times;
+		int res = 0;
+		for (int i = n - 1; i >= 0; --i)
+		{
+			if (!times.count(games[i].t))
+			{
+				times.emplace(games[i].t);
+				res += games[i].w;
+			}
+			else
+			{
+				res -= games[i].w;
+			}
+
+		}
+
+		cout << res;
+	}
+}
+
 void GloryCLub_MultiMap()
 {
 

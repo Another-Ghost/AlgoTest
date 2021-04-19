@@ -105,6 +105,7 @@ string addStrings(string num1, string num2) {
 	return res;
 }
 
+//不是效率最高的方法
 string multiply(string num1, string num2) {
 	//vector<int> arr1;
 	//vector<int> arr2;
@@ -140,5 +141,87 @@ string multiply(string num1, string num2) {
 		ans.push_back(arr[j] + '0');
 
 	return ans;
+
+}
+
+void dfs(int dep, const string& input, const vector<string>& bottons, string& out, vector<string>& outs)
+{
+	if (dep > input.size() - 1) {
+		outs.push_back(out);
+		return;
+	}
+	int num = input[dep] - '0';
+	for (int i = 0; i < bottons[num].size(); ++i)
+	{
+		out.push_back(bottons[num][i]);
+		dfs(dep + 1, input, bottons, out, outs);
+		out.erase(dep);
+	}
+}
+
+vector<string> letterCombinations(string digits) {
+	vector<string> ans;
+
+	vector<string> bottons(10);
+	bottons[2] = "abc";
+	bottons[3] = "def";
+	bottons[4] = "ghi";
+	bottons[5] = "jkl";
+	bottons[6] = "mno";
+	bottons[7] = "pqrs";
+	bottons[8] = "tuv";
+	bottons[9] = "wxyz";
+
+	string input;
+	cin >> input;
+
+	string out;
+
+	dfs(0, input, bottons, out, ans);
+
+	return ans;
+}
+
+bool IsEqual(const string& a, const string b)
+{
+	int n = a.size();
+	if (n % 2 == 1)
+	{
+		for (int i = 0; i < n; ++i)
+		{
+			if (a[i] != b[i])
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	else if (n % 2 == 0)
+	{
+		string a_first(a, 0, n / 2);
+		string a_second(a, n / 2, n / 2);
+		string b_first(b, 0, n / 2);
+		string b_second(b, n / 2, n / 2);
+		return IsEqual(a_first, b_first) || IsEqual(a_second, b_second);
+	}
+
+	return true;
+}
+
+void EqualString()
+{
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		string a, b;
+		cin >> a;
+		cin >> b;
+
+		if (IsEqual(a, b))
+			puts("YES");
+		else
+			puts("NO");
+	}
 
 }

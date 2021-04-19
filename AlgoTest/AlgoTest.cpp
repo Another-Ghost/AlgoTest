@@ -106,9 +106,23 @@ int main()
 	////sort(times.begin(), times.end());
 
 	//QuickSort(times, 0, times.size() - 1);
-	vector<int> nums1 = { 1, 2 };
-	vector<int> nums2 = { 3, 4 };
-	cout << findMedianSortedArrays(nums1, nums2);
+
+	vector<int> nums = { -1, 0, 1, 2, -1, -4 };
+
+	//sort(nums.begin(), nums.end());
+	//while (true) {
+	//	int num;
+	//	cin >> num;
+	//	cout << BinarySearch(nums, 0, nums.size() - 1, num);
+	//}
+
+	vector<vector<int>> ans = threeSum(nums);
+	for (int i = 0; i < ans.size(); ++i)
+	{
+		for (int j = 0; j < ans[i].size(); ++j)
+			cout << ans[i][j] << " ";
+		cout << endl;
+	}
 
 	//int ans = numIlands(grid);
 	//cout << ans;

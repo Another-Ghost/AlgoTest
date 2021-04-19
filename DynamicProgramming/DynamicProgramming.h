@@ -7,3 +7,5 @@ void MaxSushiTotalPrice();
 void Weights();
 
 void ChangeMoneyWays();
+
+void WhacAMole();

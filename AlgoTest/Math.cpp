@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <unordered_set>
+#include <algorithm>
 
 using namespace std;
 
@@ -207,3 +208,100 @@ int numIslands(vector<vector<char>>& grid) {
 
 	return islands.size();
 }
+
+//leetcode 15 
+int BinarySearch(vector<int>& nums, int l, int r, int num) //查询不到时，小于左端点返回左侧值，大于右端点返回右侧值，其他情况返回查询值右侧第一个值
+{
+	if (l > r)
+		return -1;
+	while (l < r)
+	{
+		int mid = l + r >> 1;
+		if (nums[mid] >= num)
+			r = mid;
+		else
+			l = mid + 1;
+	}
+	return l;
+};
+
+vector<vector<int>> threeSum(vector<int>& nums) {
+	vector<vector<int>> ans;
+	if (nums.size() < 3)
+		return ans;
+	int n = nums.size();
+	sort(nums.begin(), nums.end());
+	if (nums[0] > 0 || nums[n - 1] < 0)
+		return ans;
+
+	//auto BinarySearch = [&](int l, int r, int num) -> int
+	//{
+	//	while (l < r)
+	//	{
+	//		int mid = l + r >> 1;
+	//		if (nums[mid] >= num)
+	//			r = mid;
+	//		else
+	//			l = mid + 1;
+	//	}
+	//	return l;
+	//};
+
+	int negative = 0, positive = n - 1;
+	for (int i = 0; i < n; ++i)
+	{
+		if (nums[i] >= 0)
+		{
+			negative = i - 1;
+			break; //忘写break
+		}
+	}
+
+	for (int i = n - 1; i >= 0; --i) //0写成了n
+	{
+		if (nums[i] <= 0)
+		{
+			positive = i + 1;
+			break;
+		}
+	}
+
+	if (positive - negative >= 4)
+	{
+		vector<int> match = { 0, 0, 0 };
+		ans.push_back(match);
+	}
+	for (int i = 0; i <= negative; ++i)
+	{
+		for (int j = n - 1; j >= positive; --j)
+		{
+			int sum = nums[i] + nums[j];
+			int idx_search;
+			if (sum > 0)
+			{
+				idx_search = BinarySearch(nums, i + 1, negative, -sum);
+			}
+			else if (sum < 0) //忘写else，导致下面的else判断范围错误
+			{
+				idx_search = BinarySearch(nums, positive, j - 1, -sum);
+			}
+			else
+			{
+				idx_search = BinarySearch(nums, negative + 1, positive - 1, 0);
+			}
+
+			if (idx_search > i && idx_search < j)
+			{
+				if (nums[idx_search] == -sum)
+				{
+					vector<int> match = { nums[i], nums[idx_search], nums[j] };
+					ans.emplace_back(match);
+				}
+			}
+
+		}
+	}
+
+	return ans;
+}
+

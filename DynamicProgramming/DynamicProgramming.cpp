@@ -199,3 +199,8 @@ void ChangeMoneyWays()
 	cout << f[money] << endl;
 }
 
+//Tencent 4/18 5/5
+void WhacAMole()
+{
+}
+

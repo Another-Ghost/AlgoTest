@@ -140,10 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AlgoTest.cpp" />
+    <ClCompile Include="Blend.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Sort.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Blend.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Sort.h" />
   </ItemGroup>
