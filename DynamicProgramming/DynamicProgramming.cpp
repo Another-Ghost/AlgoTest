@@ -1,6 +1,7 @@
 #include "DynamicProgramming.h"
 #include <iostream>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -200,7 +201,98 @@ void ChangeMoneyWays()
 }
 
 //Tencent 4/18 5/5
+
+
+/*
+2 2 6
+1 1 
+1 1
+
+2 2 5
+1 1
+1 1
+*/
+
+//图的广度搜索（层序遍历） 
+//状态队列（我乱起的） 
+
+
 void WhacAMole()
 {
+	int n, m, t;
+	cin >> n >> m >> t;
+
+	vector<vector<int>> mp(n, (vector<int>)(m));
+	for (int i = 0; i < n; ++i)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			cin >> mp[i][j];
+		}
+	}
+
+	int ans = 0;
+
+	queue<State> q;
+	//根据题意每次必须移动一格且不能原路返回，所以默认mp大小至少是2 x 2
+	//且默认起点在（0，0），所以先把（0,1），（1,0）入队
+	q.push(State(1, 1, 0, eNorth, (1 % mp[1][0] == 0)));
+	q.push(State(1, 0, 1, eEast, (1 % mp[0][1] == 0)));
+	while (!q.empty())
+	{
+		State cur = q.front();
+		q.pop();
+		
+		if (cur.i == n - 1 && cur.j == m - 1 && cur.t == t)	//默认终点位置是（n-1, m -1), 且必须t时刻正好走到终点才可以
+		{
+			ans = max(ans, cur.score);
+		}
+		
+		int t_new = cur.t + 1;
+		if (t_new > t)
+			continue;
+
+		if (cur.i > 0 && cur.from != eNorth)	//是否可向上走
+		{
+			int i_new = cur.i - 1;
+			int j_new = cur.j;
+			if (n - 1 - i_new + m - 1 - j_new <= t - cur.t)	//如果当前位置在剩余时间内到达不了终点则略过	
+			{
+				q.push(State(t_new, i_new, j_new, eSouth, cur.score + (t_new % mp[i_new][j_new] == 0))); //t_new % mp[i_new][j_new]为0说明代表当前位置计时已到
+			}
+		}
+
+		if (cur.i < n - 1 && cur.from != eSouth)
+		{
+			int i_new = cur.i + 1;
+			int j_new = cur.j;
+			if (n - 1 - i_new + m - 1 - j_new <= t - cur.t)
+			{
+				q.push(State(t_new, i_new, j_new, eNorth, cur.score + (t_new % mp[i_new][j_new] == 0)));
+			}
+		}
+
+		if (cur.j > 0 && cur.from != eEast)
+		{
+			int i_new = cur.i;
+			int j_new = cur.j - 1;
+			if (n - 1 - i_new + m - 1 - j_new <= t - cur.t)
+			{
+				q.push(State(t_new, i_new, j_new, eWest, cur.score + (t_new % mp[i_new][j_new] == 0)));
+			}
+		}
+
+		if (cur.j < m -1 && cur.from != eWest)
+		{
+			int i_new = cur.i;
+			int j_new = cur.j + 1;
+			if (n - 1 - i_new + m - 1 - j_new <= t - cur.t)
+			{
+				q.push(State(t_new, i_new, j_new, eEast, cur.score + (t_new % mp[i_new][j_new] == 0)));
+			}
+		}
+	}
+	
+	cout << ans << endl;
 }
 

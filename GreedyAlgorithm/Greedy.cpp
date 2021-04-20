@@ -274,6 +274,7 @@ void GloryCLub()
 
 
 //Tencent 4/18 2/5
+//测试数据通过，但不知为何提交后通过率为0
 void GameClub()
 {
 	int T;
@@ -320,10 +321,6 @@ void GameClub()
 	}
 }
 
-void GloryCLub_MultiMap()
-{
-
-}
 
 
 

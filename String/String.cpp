@@ -182,7 +182,7 @@ vector<string> letterCombinations(string digits) {
 	return ans;
 }
 
-bool IsEqual(const string& a, const string b)
+bool IsEqual(const string& a, const string& b)
 {
 	int n = a.size();
 	if (n % 2 == 1)

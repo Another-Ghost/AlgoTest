@@ -9,7 +9,8 @@
 
 int main()
 {
-	ChangeMoneyWays();
+	//ChangeMoneyWays();
+	WhacAMole();
 }
 
 
