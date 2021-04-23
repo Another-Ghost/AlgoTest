@@ -1,6 +1,6 @@
 #include "ListNode.h"
 #include <vector>
-
+#include <queue>
 using namespace std;
 
 
@@ -71,4 +71,29 @@ ListNode* MinimalList(ListNode* S) {
 	}
 
 	return head;
+}
+
+ListNode* mergeKLists(vector<ListNode*>& lists)
+{
+	ListNode* head = new ListNode();
+	ListNode* tail = head;
+	auto cmp = [](ListNode* a, ListNode* b) {return a->val > b->val; };
+	priority_queue <ListNode*, vector<ListNode*>, decltype(cmp)> heap(cmp);
+	for (auto l : lists)
+	{
+		heap.push(l);
+	}
+
+	while (!heap.empty())
+	{
+		ListNode* node = heap.top();
+		heap.pop();
+		tail->next = node;
+		if (node->next)
+			heap.push(node->next);
+	}
+
+	ListNode* ans = head->next;
+	delete head;
+	return ans;
 }

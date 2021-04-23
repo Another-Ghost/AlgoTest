@@ -1,6 +1,6 @@
 #include "Tree.h"
 
-#include "queue"
+#include <queue>
 
 
 
@@ -201,3 +201,36 @@ void ConvertToCompleteBinaryTree(TreeNode* root)
 	}
 }
 
+namespace TrieTree_ {
+
+	const int N = 300;
+
+	int son[N][26], cnt[N], idx;
+	char str[N];
+
+	void insert(char* str)
+	{
+		int p = 0;
+		for (int i = 0; str[i]; i++)
+		{
+			int u = str[i] - 'a';
+			if (!son[p][u]) 
+				son[p][u] = ++idx;
+			p = son[p][u];
+		}
+		cnt[p] = idx - 1;
+	}
+
+	int query(char* str)
+	{
+		int p = 0;
+		for (int i = 0; str[i]; i++)
+		{
+			int u = str[i] - 'a';
+			if (!son[p][u]) return 0;
+			p = son[p][u];
+		}
+		return cnt[p];
+	}
+
+}

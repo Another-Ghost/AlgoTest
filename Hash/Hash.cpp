@@ -2,6 +2,8 @@
 #include <iostream>
 #include <unordered_set>
 
+//´æ´¢½á¹¹
+
 //leetcode 3
 int lengthOfLongestSubstring(string s)
 {
@@ -21,4 +23,27 @@ int lengthOfLongestSubstring(string s)
 		lookup.insert(s[i]);
 	}
 	return maxStr; 
+}
+
+
+int FindTheMinimalPrimeNumberLargerThan(int n)
+{
+	for (int i = n; ; ++i)
+	{
+		bool flag = true;
+		for (int j = 2; j * j <= i; ++j)
+		{
+			if (i % j == 0)
+			{
+				flag = false;
+				break;
+			}
+		}
+
+		if (flag)
+		{
+			return i;
+		}
+	}
+	return 2;
 }

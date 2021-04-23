@@ -215,6 +215,24 @@ void ChangeMoneyWays()
 
 //图的广度搜索（层序遍历） 
 //状态队列（我乱起的） 
+enum Direction
+{
+	eEast,
+	eWest,
+	eNorth,
+	eSouth,
+	eStart
+};
+
+struct State
+{
+	int t;
+	int i;
+	int j;
+	Direction from;
+	int score;
+	State(int t_, int i_, int j_, Direction from_, int score_) :t(t_), i(i_), j(j_), from(from_), score(score_) {}
+};
 
 
 void WhacAMole()
