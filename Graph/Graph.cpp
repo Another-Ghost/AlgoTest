@@ -74,7 +74,7 @@ namespace Dijkstra_
 
 namespace Dijkstra_heap_
 {
-	typedef pair<int, int> PII;
+	typedef pair<int, int> PII;	// {dist, 顶点编号}
 
 	const int N = 100010;
 	int n, m;
@@ -83,12 +83,14 @@ namespace Dijkstra_heap_
 	int dist[N]; //当前的最短距离
 	bool st[N]; //每个点的最短路径是否已经确定了
 
+
+
 	int dijkstra_heap()
 	{
 		memset(dist, 0x3f, sizeof dist);
 		dist[1] = 0; //初始化
 
-		priority_queue<PII, vector<PII>, greater<PII>> heap;
+		priority_queue<PII, vector<PII>, greater<PII>> heap;	//按距离比较的小根堆
 		heap.push({ 0, 1 });
 		while (heap.size())
 		{
@@ -98,6 +100,7 @@ namespace Dijkstra_heap_
 			int ver = t.second, distance = t.first;
 			if (st[ver])
 				continue;
+			st[ver] = true;
 
 			for (int i = h[ver]; i != -1; i = ne[i]) //遍历当前顶点的边表
 				//复杂度降到m*logm
@@ -107,7 +110,7 @@ namespace Dijkstra_heap_
 				if (dist[j] > distance + w[i])
 				{
 					dist[j] = distance + w[i];
-					heap.push({ dist[j], j });
+					heap.push({ dist[j], j }); //更新过后的dist有潜力成为最小值，需加入到队列中
 				}
 			}
 		}
@@ -160,7 +163,7 @@ namespace Bellman_ford_
 
 	const int N = 500, M = 10010;
 
-	int n, m, k;
+	int n, m, k; //边数不能超过k
 	int dist[N], backup[N];
 
 	struct Edge
@@ -175,7 +178,7 @@ namespace Bellman_ford_
 
 		for (int i = 0; i < k; ++i)
 		{
-			memcpy(backup, dist, sizeof(dist)); //每次遍历前备份一下
+			memcpy(backup, dist, sizeof(dist)); //因为边数是有限制的，每次遍历前备份一下，防止串联（即用当次遍历中的前面的值更新后面的值）
 			for (int j = 0; j < m; ++j)
 			{
 				int a = edges[j].a;
@@ -185,8 +188,10 @@ namespace Bellman_ford_
 			}
 		}
 
-		if (dist[n] > 0x3f3f3f3f / 2)
+		if (dist[n] > 0x3f3f3f3f / 2) //因为存在负权边，所以不能用0x3f3f3f3f
 			return -1;
+		else
+			return dist[n];
 	}
 
 	int main()
@@ -222,7 +227,7 @@ namespace Spfa_
 	int h[N], w[N], e[N], ne[N], idx; //邻接表
 
 	int dist[N]; //当前的最短距离
-	bool st[N]; //每个点的最短路径是否已经确定了
+	bool st[N]; 
 
 	void addEdge(int a, int b, int c)
 	{
@@ -240,7 +245,7 @@ namespace Spfa_
 
 		queue<int> q;
 		q.push(1);
-		st[1] = true; //此处st数组存的是当前点是否在队列当中，防止存储重复的点
+		st[1] = true; //存的是当前点是否在队列当中，防止队列中存储重复的点
 
 		while (q.size())
 		{
@@ -249,7 +254,7 @@ namespace Spfa_
 
 			st[t] = false;
 
-			for (int i = h[t]; i != -1; i = ne[i])
+			for (int i = h[t]; i != -1; i = ne[i]) //更新所有临边
 			{
 				int j = e[i];
 				if (dist[j] > dist[t] + w[i])
@@ -269,6 +274,79 @@ namespace Spfa_
 		return dist[n];
 
 	}
+
+
+
+	const int N = 2010, M = 10010;
+
+	int n, m;
+	int h[N], w[M], e[M], ne[M], idx;
+	int dist[N], cnt[N];
+	bool st[N];
+
+	void add(int a, int b, int c)
+	{
+		e[idx] = b, w[idx] = c, ne[idx] = h[a], h[a] = idx++;
+	}
+
+	bool SpfaNegativeLoop()
+	{
+		queue<int> q;
+		//无需初始化dist
+		for (int i = 1; i <= n; i++) //如果只加入一个点，可能漏判该点到不了的负环
+		{
+			st[i] = true;
+			q.push(i);
+		}
+
+		while (q.size())
+		{
+			int t = q.front();
+			q.pop();
+
+			st[t] = false;
+
+			for (int i = h[t]; i != -1; i = ne[i])
+			{
+				int j = e[i];
+				if (dist[j] > dist[t] + w[i])
+				{
+					dist[j] = dist[t] + w[i];
+					cnt[j] = cnt[t] + 1;
+
+					if (cnt[j] >= n) return true;
+					if (!st[j])
+					{
+						q.push(j);
+						st[j] = true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
+	int main()
+	{
+		scanf("%d%d", &n, &m);
+
+		memset(h, -1, sizeof h);
+
+		while (m--)
+		{
+			int a, b, c;
+			scanf("%d%d%d", &a, &b, &c);
+			add(a, b, c);
+		}
+
+		if (SpfaNegativeLoop()) puts("Yes");
+		else puts("No");
+
+		return 0;
+	}
+
+
 
 	int main()
 	{
@@ -469,5 +547,11 @@ namespace Kruskal_
 
 		return 0;
 	}
+
+}
+
+//可以搜到最短路（前提是边的权重相同）
+void BFS()
+{
 
 }

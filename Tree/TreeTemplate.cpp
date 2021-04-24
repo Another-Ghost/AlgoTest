@@ -7,9 +7,9 @@ using namespace std;
 const int N = 10010;
 
 
-int son[N][26], idx;
+int son[N][26], idx; //堆中值会默认初始化为0
 int cnt[N]; //有多少个以该节点结尾的单词（同一单词）
-//vector<vector<int>> cnt(N);
+//vector<vector<int>> cnt(N); //需根据问题变化
 
 void insert(const string& str)
 {
