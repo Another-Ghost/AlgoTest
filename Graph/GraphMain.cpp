@@ -4,63 +4,47 @@
 
 using namespace std;
 
-typedef pair<int, int> PDV;
+typedef pair<int, int> Edge;
 
-typedef pair<int, int> PWV;
-
-int networkDelayTime(vector<vector<int>>& times, int n, int k) {
-	vector<vector<PWV>> g(n);
-	for (const auto& t : times)
-	{
-		g[t[0]].emplace_back(t[2], t[1]);
-	}
+int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
+	vector<vector<Edge>> g(n);
+	for (const auto& f : flights)
+		g[f[0]].emplace_back(f[2], f[1]);
 
 	vector<int> dist(n, INT_MAX / 2);
+	vector<int> cnt(n);
 	vector<bool> st(n);
-	dist[k] = 0;
+	dist[src] = 0;
 
-	priority_queue<PDV, vector<PDV>, greater<PDV>> heap;
-	heap.push({ 0, k });
-
-	while (!heap.empty())
+	priority_queue<Edge, vector<Edge>, greater<Edge>> heap;
+	heap.push({ 0, src });
+	while (heap.size())
 	{
 		auto t = heap.top();
 		heap.pop();
-
-		int ver = t.second, distance = t.first;
-		if (st[ver])
-			continue;
-		st[ver] = true;
-
-
-		for (const auto& edge : g[ver])
+		int a = t.second, distance = t.first;
+		//if (st[a])
+		//	continue;
+		//st[a] = true;
+		for (const auto& e : g[a])
 		{
-			int j = edge.second, w = edge.first;
-			if (dist[j] > distance + w)
+			int b = e.second, w = e.first;
+			if (cnt[a] <= K)
 			{
-				dist[j] = distance + w;
-				heap.push({ dist[j], j });
+				dist[b] = distance + w;
+				heap.push({ dist[b], b });
+				cnt[b] = cnt[a] + 1;
 			}
 		}
 	}
 
-	int ans = 0;
-	for (int i = 1; i <= n; ++i)
-	{
-		//cout<< dist[i] << ' ';
-		if (dist[i] != INT_MAX / 2)
-			ans = max(ans, dist[i]);    //结果为最短路径中的最大值
-		else
-		{
-			return -1;
-		}
-	}
-
-	return ans;
+	return dist[dst] == INT_MAX / 2 ? -1 : dist[dst];
 }
 
 int main()
 {
-   
+	vector<vector<int>> flights = { {0,1,1}, {1,2,1}, {0,2,5}, {2,3,1} };
+
+	findCheapestPrice(4, flights, 0, 3, 1);
 }
 

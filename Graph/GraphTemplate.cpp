@@ -49,7 +49,7 @@ namespace dijkstra_heap{
 	//	int b; // a->b
 
 	//	
-	//	Edge(int v_, int w_) : v(v_), w(w_) {}
+	//	Edge(int w_, int b_) : v(w_), w(b_) {}
 	//};
 
 	
@@ -126,7 +126,7 @@ namespace bellman_ford
 				int a = edges[j][0];
 				int b = edges[j][1];
 				int w = edges[j][2];
-				dist[b] = min(dist[b], backup[a] + w);
+				dist[b] = min(dist[b], backup[a] + w); //此处用backup数组更新
 			}
 		}
 		
@@ -178,5 +178,53 @@ namespace spfa
 		return dist[end] == INT_MAX / 2 ? -1 : dist[end];
 	}
 
+	bool SpfaNegativeLoop(vector<vector<int>>& edges, int n)
+	{
+		vector<vector<Edge>> g(n);
+		for (const auto& e : edges)
+		{
+			g[e[0]].emplace_back(e[2], e[1]);
+			
+		}
+
+		vector<int> dist(n); //因为是判断有没有负环，无需初始化为无穷值
+		vector<bool> st(n);
+		vector<int> cnt(n);
+
+		queue<int> q;
+		for (int i = 0; i < n; ++i) //如果只加入一个点，可能漏判该点到不了的负环
+		{
+			st[i] = true;
+			q.push(i);
+		}
+	
+		while (!q.empty())
+		{
+			int t = q.front();
+			q.pop();
+			st[t] = false;
+
+			for (const auto& e : g[t])
+			{
+				int b = e.second, w = e.first;
+				if (dist[b] > dist[t] + w)
+				{
+					dist[b] = dist[t] + w;
+					cnt[b] = cnt[t] + 1; //核心
+
+					if (cnt[b] > n)
+						return true;
+
+					if (!st[b])
+					{
+						q.push(b);
+						st[b] = true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
 
 }

@@ -277,12 +277,9 @@ namespace Spfa_
 
 
 
-	const int N = 2010, M = 10010;
 
-	int n, m;
-	int h[N], w[M], e[M], ne[M], idx;
-	int dist[N], cnt[N];
-	bool st[N];
+
+	int cnt[N];
 
 	void add(int a, int b, int c)
 	{
@@ -327,24 +324,7 @@ namespace Spfa_
 		return false;
 	}
 
-	int main()
-	{
-		scanf("%d%d", &n, &m);
 
-		memset(h, -1, sizeof h);
-
-		while (m--)
-		{
-			int a, b, c;
-			scanf("%d%d%d", &a, &b, &c);
-			add(a, b, c);
-		}
-
-		if (SpfaNegativeLoop()) puts("Yes");
-		else puts("No");
-
-		return 0;
-	}
 
 
 
