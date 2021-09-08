@@ -7,6 +7,32 @@
 using namespace std;
 
 
+class Solution
+{
+
+
+	//const int N = 100;
+	vector<int> h, w, e, ne;
+	int idx;
+
+
+	void AddEdge(int a, int b, int c)
+	{
+		e[idx] = b; //出边
+		w[idx] = c;
+		ne[idx] = h[a]; //e,w, ne 都可以通过h保存的idx查找
+		h[a] = idx++;   //头插法
+	}
+
+	int main(int n)
+	{
+		h.resize(n);
+		w.resize(n);
+		e.resize(n);
+		ne.resize(n);
+	}
+};
+
 //稠密图用邻接矩阵来存，稀疏图用邻接表来存 
 //有向图和无向图的最短路径相同，所以只考虑有向图即可
 
@@ -78,10 +104,10 @@ namespace Dijkstra_heap_
 
 	const int N = 100010;
 	int n, m;
-	int h[N], w[N], e[N], ne[N], idx; //邻接表
+	int h[N], w[N], e[N], ne[N], idx; //邻接表	head, weight, edge, next_edge
 
 	int dist[N]; //当前的最短距离
-	bool st[N]; //每个点的最短路径是否已经确定了
+	bool st[N]; //每个点的最短路径是否已经确定了 state
 
 
 
@@ -94,7 +120,7 @@ namespace Dijkstra_heap_
 		heap.push({ 0, 1 });
 		while (heap.size())
 		{
-			auto t = heap.top();
+			auto t = heap.top();	//t: top
 			heap.pop();
 
 			int ver = t.second, distance = t.first;
@@ -102,7 +128,7 @@ namespace Dijkstra_heap_
 				continue;
 			st[ver] = true;
 
-			for (int i = h[ver]; i != -1; i = ne[i]) //遍历当前顶点的边表
+			for (int i = h[ver]; i != -1; i = ne[i]) //遍历当前顶点的边表 //i: index， j: 入点
 				//复杂度降到m*logm
 			{
 				int j = e[i];
@@ -219,6 +245,8 @@ namespace Bellman_ford_
 }
 
 //spfa
+//队列优化的Bellman-Ford算法
+//时间复杂度 平均情况下O(m) ，最坏情况下O(nm) n , 表示点数， 表示边数
 namespace Spfa_
 {
 
@@ -274,10 +302,6 @@ namespace Spfa_
 		return dist[n];
 
 	}
-
-
-
-
 
 	int cnt[N];
 
@@ -350,6 +374,7 @@ namespace Spfa_
 	}
 }
 
+//求全部顶点之间的最短路径，时间复杂度是O(n^3)
 namespace Floyd_
 {
 	//把邻接矩阵变成最短距离矩阵
@@ -370,10 +395,9 @@ namespace Floyd_
 		{
 			for (int i = 1; i <= n; ++i)
 				for (int j = 1; j <= n; ++j)
-					if (i == j)
-						d[i][j] = 0;
-					else
-						d[i][j] = INF;
+				{
+					d[i][j] = min(d[i][j], d[i][k] + d[k][j]);
+				}
 		}
 	}
 
@@ -411,6 +435,8 @@ namespace Floyd_
 
 }
 
+//求最小生成树
+//时间复杂度是O(n^2+m), 表示点数， 表示边数
 namespace Prim_
 {
 
@@ -470,6 +496,7 @@ namespace Prim_
 	}
 }
 
+//时间复杂度是O(mlogm)
 namespace Kruskal_
 {
 	//时间瓶颈为排序算法， 但由于排序算法常数小，Kruskal表现很好

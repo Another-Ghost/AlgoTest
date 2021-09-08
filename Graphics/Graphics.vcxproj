@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{1b6f4706-2e89-46b9-867e-b3e98bfdaeae}</ProjectGuid>
-    <RootNamespace>Graph</RootNamespace>
+    <ProjectGuid>{f4d89887-0673-4bd5-9ec2-b6bc0cf5cb20}</ProjectGuid>
+    <RootNamespace>Graphics</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,14 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="graph_example.cpp" />
-    <ClCompile Include="Graph.cpp" />
-    <ClCompile Include="GraphMain.cpp" />
-    <ClCompile Include="GraphTemplate.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Graph.h" />
-    <ClInclude Include="GraphTemplate.h" />
+    <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="IntersectionTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
