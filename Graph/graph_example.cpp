@@ -71,70 +71,6 @@ public:
     }
 };
 
-//deprecated
-class Solution1
-{
-
-    int N;
-    vector<int> h, w, e, ne;
-    int idx;
-    
-
-    int min_sum = INT_MAX;
-    //int n = 0;
-    vector<bool> visited;
-    void DFS(int v, int n, int sum)
-    {
-        if (n == N)
-        {
-            min_sum = min(min_sum, sum);
-        }
-        
-        visited[v] = true;
-        
-        int e_idx = h[v];
-        while (e_idx != -1)
-        {
-            int edge = e[e_idx];
-            if (!visited[edge])
-            {
-                DFS(edge, n + 1, sum + w[e_idx]);
-            }
-            e_idx = ne[e_idx];
-        }
-        
-        visited[v] = false;
-    }
-
-    int CalDelayTime(vector<vector<int> >& network, int n, int K) {
-        N = n;
-
-        h.resize(N, -1); //所有临边表的头结点初始化为-1
-        w.resize(N);
-        e.resize(N);
-        ne.resize(N);
-        visited.resize(N);
-        
-
-
-        for (auto& net : network)
-        {
-            AddEdge(net[0], net[1], net[2]);
-        }
-
-        DFS(K, 0, 0);
-
-        return min_sum == INT_MAX ? -1 : min_sum;
-    }
-
-    void AddEdge(int a, int b, int c)
-    {
-        e[idx] = b; //出边
-        w[idx] = c; 
-        ne[idx] = h[a]; //e,w, ne 都可以通过h保存的idx查找
-        h[a] = idx++;   //头插法
-    }
-};
 
 class Solution743 {
 public:
@@ -209,3 +145,5 @@ public:
 		return ans;
 	}
 };
+
+// 9/9 Tencent

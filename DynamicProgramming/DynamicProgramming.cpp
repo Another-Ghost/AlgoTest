@@ -314,3 +314,112 @@ void WhacAMole()
 	cout << ans << endl;
 }
 
+int main() {
+	//int a;
+	//cin >> a;
+	int times;
+	cin >> times;
+
+	while(times--)
+	{ 
+		int N;
+		cin >> N;
+
+		int S;
+		cin >> S;
+
+		int dest_x, dest_y;
+		cin >> dest_x >> dest_y;
+
+		vector<vector<int>> arr_map(N, vector<int>(N, 1));
+
+		queue<pair<int, int>> q;
+
+
+
+		for (int i = 0; i < S; ++i)
+		{
+			int x, y;
+			cin >> x;
+			cin >> y;
+			arr_map[x - 1][y - 1] = -1;
+		}
+
+		
+
+
+
+		//for (int i = 0; i < arr_map.size(); ++i)
+		//	if (arr_map[i][0] != -1)
+		//		arr_map[i][0] = 1;
+		//	else
+		//		continue;
+		//for (int i = 0; i < arr_map[0].size(); ++i)
+		//	if (arr_map[0][i] != -1)
+		//		arr_map[0][i] = 1;
+		//	else
+		//		break;
+
+		
+
+		for (int i = 1; i < N; ++i)
+		{
+			for (int j = 1; j < N; ++j)
+			{
+				if (arr_map[i][j] != -1)
+				{
+					arr_map[i][j] += (arr_map[i - 1][j] == -1) ? 0 : arr_map[i - 1][j];
+					arr_map[i][j] += (arr_map[i][j - 1] == -1) ? 0 : arr_map[i][j - 1];
+				}
+			}
+		}
+		int ans = (arr_map[N - 1][N - 1] > 0) ? arr_map[N - 1][M - 1] : 0;
+		cout << ans;
+
+	}
+}
+
+#include <unordered_map>
+
+struct DNode {
+	int key, value;
+	DNode* prev;
+	DNode* next;
+	DNode() : key(0), value(0), prev(nullptr), next(nullptr) {}
+	DNode(int _key, int _value) : key(_key), value(_value), prev(nullptr), next(nullptr) {}
+};
+
+class LRUCache
+{
+	LRUCache(int cap) : capacity(cap)
+	{
+		head = new DNode();
+		tail = new DNode();
+	}
+
+
+
+	unordered_map<int, DNode*> cache;
+
+	int capacity = 2;
+
+	DNode* head;
+	DNode* tail;
+	
+	int get(int key)
+	{
+		if (!cache.count(key))
+		{
+			return -1;
+		}
+	}
+
+	void put(int key, int value)
+	{
+
+	}
+	//map<int, int> 
+};
+
+
+
