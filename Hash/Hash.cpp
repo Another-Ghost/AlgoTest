@@ -47,3 +47,4 @@ int FindTheMinimalPrimeNumberLargerThan(int n)
 	}
 	return 2;
 }
+
