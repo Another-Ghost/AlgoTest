@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{e3fbfe14-899a-4e9e-9113-54e72625284b}</ProjectGuid>
-    <RootNamespace>Algo</RootNamespace>
+    <ProjectGuid>{119c9489-9dee-4fc2-bfb1-73b7e6c406d6}</ProjectGuid>
+    <RootNamespace>AlgoTemp</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,8 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Algo.cpp" />
-    <ClCompile Include="LeetCode.cpp" />
+    <ClCompile Include="AlgoTemp.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -29,6 +29,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Trackback", "Trackback\Trac
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "template", "template\template.vcxproj", "{006861D2-7D33-4FA8-A2AF-D11986FAA082}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AlgoTemp", "AlgoTemp\AlgoTemp.vcxproj", "{119C9489-9DEE-4FC2-BFB1-73B7E6C406D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -141,6 +143,14 @@ Global
 		{006861D2-7D33-4FA8-A2AF-D11986FAA082}.Release|x64.Build.0 = Release|x64
 		{006861D2-7D33-4FA8-A2AF-D11986FAA082}.Release|x86.ActiveCfg = Release|Win32
 		{006861D2-7D33-4FA8-A2AF-D11986FAA082}.Release|x86.Build.0 = Release|Win32
+		{119C9489-9DEE-4FC2-BFB1-73B7E6C406D6}.Debug|x64.ActiveCfg = Debug|x64
+		{119C9489-9DEE-4FC2-BFB1-73B7E6C406D6}.Debug|x64.Build.0 = Debug|x64
+		{119C9489-9DEE-4FC2-BFB1-73B7E6C406D6}.Debug|x86.ActiveCfg = Debug|Win32
+		{119C9489-9DEE-4FC2-BFB1-73B7E6C406D6}.Debug|x86.Build.0 = Debug|Win32
+		{119C9489-9DEE-4FC2-BFB1-73B7E6C406D6}.Release|x64.ActiveCfg = Release|x64
+		{119C9489-9DEE-4FC2-BFB1-73B7E6C406D6}.Release|x64.Build.0 = Release|x64
+		{119C9489-9DEE-4FC2-BFB1-73B7E6C406D6}.Release|x86.ActiveCfg = Release|Win32
+		{119C9489-9DEE-4FC2-BFB1-73B7E6C406D6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

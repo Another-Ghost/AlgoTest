@@ -9,10 +9,8 @@ using namespace std;
 
 class Solution
 {
-
-
 	//const int N = 100;
-	vector<int> h, w, e, ne;
+	vector<int> h, w, e, ne;	//h保存的是头结点的index
 	int idx;
 
 
@@ -20,12 +18,13 @@ class Solution
 	{
 		e[idx] = b; //出边
 		w[idx] = c;
-		ne[idx] = h[a]; //e,w, ne 都可以通过h保存的idx查找
+		ne[idx] = h[a]; //e, w, ne都可以通过h保存的idx查找
 		h[a] = idx++;   //头插法
 	}
 
 	int main(int n)
 	{
+
 		h.resize(n);
 		w.resize(n);
 		e.resize(n);

@@ -15,10 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Algo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LeetCode.cpp">
+    <ClCompile Include="AlgoTemp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
